@@ -125,8 +125,8 @@ const gradeMap: Map<string, number> = new Map<string, number>([
     ["", 0]]
 );
 
-function calculateAverageGradeForCourse(course:Course){
-    let sum:number = course.grades.reduce((acc, grade) => acc + gradeMap.get(grade), 0)
+function calculateAverageGradeForCourse(course:Course):number{
+    let sum:number = course.grades.reduce((acc:number, grade:string) => acc + gradeMap.get(grade), 0)
     let numberOfGrades:number = course.grades.reduce((acc, grade) => acc + (grade ? 1 : 0), 0);
 
     return Number((sum/ numberOfGrades).toFixed(1));
@@ -138,8 +138,8 @@ function printAverageGradeForStudentCourses(student:Student){
     console.log();
     console.log("Noten: ");
     student.courses
-        .map((course) => course.name + ": " + calculateAverageGradeForCourse(course))
-        .forEach((course) => console.log(course));
+        .map((course:Course):string => course.name + ": " + calculateAverageGradeForCourse(course))
+        .forEach((course:string) => console.log(course));
     console.log();
 }
 printAverageGradeForStudentCourses(student1);
